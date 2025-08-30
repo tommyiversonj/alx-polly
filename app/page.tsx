@@ -1,103 +1,156 @@
-import Image from "next/image";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { BarChart3, Users, TrendingUp, Plus } from "lucide-react"
+import { getRecentPolls } from "@/lib/db/mock-data"
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const recentPolls = getRecentPolls(3)
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
+        <div className="container mx-auto px-4 text-center">
+          <div className="flex items-center justify-center mb-6">
+            <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mr-4">
+              <span className="text-white font-bold text-2xl">P</span>
+            </div>
+            <h1 className="text-5xl font-bold text-gray-900">ALX Polly</h1>
+          </div>
+          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Create and participate in polls with ease. Share your voice with the community 
+            and discover what others think about important topics.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Link href="/polls">
+              <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+                Browse Polls
+              </Button>
+            </Link>
+            <Link href="/polls/create">
+              <Button size="lg" variant="outline">
+                <Plus className="w-4 h-4 mr-2" />
+                Create Poll
+              </Button>
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Why Choose ALX Polly?</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="text-center">
+              <CardHeader>
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Plus className="w-6 h-6 text-blue-600" />
+                </div>
+                <CardTitle>Easy to Create</CardTitle>
+                <CardDescription>
+                  Create polls in seconds with our intuitive interface. No complex setup required.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            <Card className="text-center">
+              <CardHeader>
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-6 h-6 text-green-600" />
+                </div>
+                <CardTitle>Community Driven</CardTitle>
+                <CardDescription>
+                  Engage with your community and get real-time insights from your audience.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            <Card className="text-center">
+              <CardHeader>
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <BarChart3 className="w-6 h-6 text-purple-600" />
+                </div>
+                <CardTitle>Real-time Results</CardTitle>
+                <CardDescription>
+                  See results instantly with beautiful charts and analytics.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Polls Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold">Recent Polls</h2>
+            <Link href="/polls">
+              <Button variant="outline">View All Polls</Button>
+            </Link>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {recentPolls.map((poll) => (
+              <Card key={poll.id} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <CardTitle className="text-lg line-clamp-2">{poll.title}</CardTitle>
+                    <Badge variant={poll.isActive ? "default" : "secondary"}>
+                      {poll.isActive ? "Active" : "Closed"}
+                    </Badge>
+                  </div>
+                  <CardDescription className="line-clamp-2">
+                    {poll.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+                    <div className="flex items-center">
+                      <Users className="w-4 h-4 mr-1" />
+                      {poll.totalVotes} votes
+                    </div>
+                    <div className="flex items-center">
+                      <TrendingUp className="w-4 h-4 mr-1" />
+                      {poll.options.length} options
+                    </div>
+                  </div>
+                  <Link href={`/polls/${poll.id}`}>
+                    <Button variant="outline" className="w-full">
+                      {poll.isActive ? "Vote Now" : "View Results"}
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-blue-600">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Ready to Start Polling?
+          </h2>
+          <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
+            Join thousands of users who are already creating and participating in polls. 
+            It's free, easy, and fun!
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Link href="/register">
+              <Button size="lg" variant="secondary">
+                Get Started
+              </Button>
+            </Link>
+            <Link href="/polls">
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-blue-600">
+                Explore Polls
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
-  );
+  )
 }
